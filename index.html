@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,31 +9,108 @@
     <title>蔡宇森个人简历</title>
     <script src="//at.alicdn.com/t/font_568710_uyr3hkcrmpge3ik9.js"></script>
     <style type="text/css">
+        .loading {
+            width: 200px;
+            height: 200px;
+            border: 1px solid red;
+            position: relative;
+        }
+
+        .loading::before,
+        .loading::after {
+            content: '';
+            position: absolute;
+            width: 0px;
+            height: 0px;
+            background: black;
+            border-radius: 50%;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            animation: loading 1.5s linear infinite;
+        }
+
+        .loading::after {
+            animation-delay: .75s;
+        }
+
+        @keyframes loading {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+            100% {
+                width: 100px;
+                height: 100px;
+                opacity: 0;
+            }
+        }
+
         .icon {
-           width: 1em; height: 1em;
-           vertical-align: -0.15em;
-           fill: currentColor;
-           overflow: hidden;
+            width: 1em;
+            height: 1em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+
+        .site-welcome {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #888;
+            z-index: 1;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .site-welcome.active {
+            display: flex;
         }
     </style>
 </head>
+
 <body>
+    <div id="siteWelcome" class="site-welcome active">
+        <div class="loading"></div>
+    </div>
     <div class="topNavBar">
         <div class="topNavBar-inner clearfix">
-                <a href="#" class="logo">
-                    <span class="rs">RS</span><span class="card">card</span>
-                </a>
-                 <nav>
-                    <ul class="clearfix">
-                    <li><a href="#" >关于</a></li>
-                    <li><a href="#">技能</a></li>
-                    <li><a href="#">作品</a></li>
-                    <li><a href="#">博客</a></li>
-                    <li><a href="#">日历</a></li>
-                    <li><a href="#">联系方式</a></li>
-                    <li><a href="#">其他</a></li>
-                    </ul>
-                </nav>
+            <a href="#" class="logo">
+                <span class="rs">RS</span>
+                <span class="card">card</span>
+            </a>
+            <nav>
+                <ul class="clearfix">
+                    <li>
+                        <a href="#">关于</a>
+                    </li>
+                    <li>
+                        <a href="#">技能</a>
+                    </li>
+                    <li>
+                        <a href="#">作品</a>
+                    </li>
+                    <li>
+                        <a href="#">博客</a>
+                    </li>
+                    <li>
+                        <a href="#">日历</a>
+                    </li>
+                    <li>
+                        <a href="#">联系方式</a>
+                    </li>
+                    <li>
+                        <a href="#">其他</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
     <div class="banner" style="background-image:url(./img/rs-cover.jpg)">
@@ -42,56 +120,56 @@
         <div class="userCard">
             <div class="pictureAndText clearfix">
                 <div class="picture">
-                    <img src="./img/avatar.jpg" width="299" height="347" alt="头像">            
+                    <img src="./img/avatar.jpg" width="299" height="347" alt="头像">
                 </div>
                 <div class="text">
-                        <span class="welcome">
-                            Hello
-                            <span class="triangle"></span>
-                        </span>
-                        <h1>蔡宇森</h1>
-                        <p>在学习前端的学生</p>
-                        <hr>
-                        <dl>
-                            <dt>年龄</dt>
-                            <dd>21</dd>
-                            <dt>所在城市</dt>
-                            <dd>广州</dd>
-                            <dt>学校</dt>
-                            <dd>广州中医药大学</dd>
-                            <dt>邮箱</dt>
-                            <dd>bassxiaosen1@gmail.com</dd>
-                            <dt>手机</dt>
-                            <dd>13538800134</dd>
-                        </dl>
+                    <span class="welcome">
+                        Hello
+                        <span class="triangle"></span>
+                    </span>
+                    <h1>蔡宇森</h1>
+                    <p>在学习前端的学生</p>
+                    <hr>
+                    <dl>
+                        <dt>年龄</dt>
+                        <dd>21</dd>
+                        <dt>所在城市</dt>
+                        <dd>广州</dd>
+                        <dt>学校</dt>
+                        <dd>广州中医药大学</dd>
+                        <dt>邮箱</dt>
+                        <dd>bassxiaosen1@gmail.com</dd>
+                        <dt>手机</dt>
+                        <dd>13538800134</dd>
+                    </dl>
                 </div>
             </div>
             <footer class="media">
-                    <a href="#">
-                        <svg class="icon" aria-hidden="true">
-                            <use xlink:href="#icon-github"></use>
-                        </svg>
-                    </a>
-                    <a href="#">
-                        <svg class="icon" aria-hidden="true">
-                             <use xlink:href="#icon-aui-icon-weibo"></use>
-                        </svg>
-                    </a>
-                    <a href="#">
-                        <svg class="icon" aria-hidden="true">
-                            <use xlink:href="#icon-ego-blog"></use>
-                        </svg>
-                    </a>
-                </footer>
+                <a href="#">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                </a>
+                <a href="#">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-aui-icon-weibo"></use>
+                    </svg>
+                </a>
+                <a href="#">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-ego-blog"></use>
+                    </svg>
+                </a>
+            </footer>
         </div>
-        <p class="downloadResume-wrapper" >
-            <a href="./resume.pdf" class="downloadResume" download target="_blank">下载简历pdf</a>            
+        <p class="downloadResume-wrapper">
+            <a href="./resume.pdf" class="downloadResume" download target="_blank">下载简历pdf</a>
         </p>
         <p class="selfIntroduction">
-            蔡宇森，目前在广州中医药大学读计算机科学与技术<br>
-            技能：CET4已通过，前端开发，了解nodejs，具备React项目经验
+            蔡宇森，目前在广州中医药大学读计算机科学与技术
+            <br> 技能：CET4已通过，前端开发，了解nodejs，具备React项目经验
         </p>
-    </main>   
+    </main>
     <section class="skills">
         <h2>技能</h2>
         <ol class="clearfix">
@@ -111,28 +189,28 @@
                 <h3>jQuery</h3>
                 <div class="progressBar">
                     <div class="progress" style="width:30%;"></div>
-                </div>                
+                </div>
             </li>
             <li>
                 <h3>Vue</h3>
                 <div class="progressBar">
                     <div class="progress" style="width:40%;"></div>
-                </div>     
+                </div>
             </li>
             <li>
                 <h3>React</h3>
                 <div class="progressBar">
                     <div class="progress"></div>
-                </div> 
+                </div>
             </li>
             <li>
                 <h3>HTTP</h3>
                 <div class="progressBar">
                     <div class="progress" style="width:60%;"></div>
-                </div> 
+                </div>
             </li>
         </ol>
-    </section> 
+    </section>
     <section class="portfolio">
         <h2>作品集</h2>
         <nav>
@@ -146,13 +224,13 @@
             </div>
         </nav>
         <script>
-            portfolio1.onclick=function(){
+            portfolio1.onclick = function () {
                 portfolioBar.className = 'bar state-1'
             }
-            portfolio2.onclick=function(){
+            portfolio2.onclick = function () {
                 portfolioBar.className = 'bar state-2'
             }
-            portfolio3.onclick=function(){
+            portfolio3.onclick = function () {
                 portfolioBar.className = 'bar state-3'
             }
         </script>
@@ -161,13 +239,16 @@
                 <img src="./img/1.jpg" alt="作品1">
             </div>
             <div class="small" style="left:645px;top:0;">
-                <img src="./img/2.jpg" alt="作品2">                
+                <img src="./img/2.jpg" alt="作品2">
             </div>
             <div class="small" style="left:645px;top:312px;;">
-                <img src="./img/3.jpg" alt="作品3">                
-            </div>            
+                <img src="./img/3.jpg" alt="作品3">
+            </div>
         </div>
     </section>
-    
+    <script>
+        siteWelcome.classList.remove('active')
+    </script>
 </body>
+
 </html>

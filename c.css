@@ -231,7 +231,7 @@ section.skills > ol >li{
 }
 section.skills .progressBar{
     height: 5px;
-    border: 1px solid #e6686a;
+    /* border: 1px solid #e6686a; */
     background: #fae1e1;
     border-radius: 2px;
 }
@@ -300,3 +300,4 @@ section.portfolio .works > .big,
 section.portfolio .works > .small{
     position: absolute;
 }
+
