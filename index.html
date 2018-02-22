@@ -76,9 +76,9 @@
 </head>
 
 <body>
-    <div id="siteWelcome" class="site-welcome active">
+    <!-- <div id="siteWelcome" class="site-welcome active">
         <div class="loading"></div>
-    </div>
+    </div> -->
     <div class="topNavBar" id="topNavBar">
         <div class="topNavBar-inner clearfix">
             <a href="#" class="logo">
@@ -125,11 +125,11 @@
     <div class="banner" style="background-image:url(./img/rs-cover.jpg)">
         <div class="mask"></div>
     </div>
-    <main id="siteAbout">
-        <div class="userCard">
+    <main>
+        <div data-x id="siteAbout" class="userCard">
             <div class="pictureAndText clearfix">
                 <div class="picture">
-                    <img src="./img/avatar.jpg" width="299" height="347" alt="头像">
+                    <img src="./img/avatar.png" width="299" height="347" alt="头像">
                 </div>
                 <div class="text">
                     <span class="welcome">
@@ -179,7 +179,7 @@
             <br> 技能：CET4已通过，前端开发，了解nodejs，具备React项目经验
         </p>
     </main>
-    <section id="siteSkills" class="skills">
+    <section data-x id="siteSkills" class="skills">
         <h2>技能</h2>
         <ol class="clearfix">
             <li>
@@ -220,7 +220,7 @@
             </li>
         </ol>
     </section>
-    <section id="siteWorks" class="portfolio">
+    <section data-x id="siteWorks" class="portfolio">
         <h2>作品集</h2>
         <nav>
             <ol class="clearfix">
@@ -257,9 +257,13 @@
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.2.0/Tween.min.js"></script>
     <script>
-        setTimeout(function () {
-            siteWelcome.classList.remove('active')
-        }, 1000)
+        // siteWelcome.classList.remove('active')
+        //添加offset类
+        let specialTags = document.querySelectorAll('[data-x]')
+        for (let i = 0; i < specialTags.length; i++) {
+            specialTags[i].classList.add('offset')
+        }
+        fuck()
 
         window.onscroll = function (e) {
             if (window.scrollY > 0) {
@@ -267,10 +271,29 @@
             } else {
                 topNavBar.classList.remove('sticky')
             }
+            fuck()
         }
 
-        let liTags = document.getElementsByClassName('menuTrigger');
-        console.log(liTags)
+        function fuck(){
+            let minIndex = 0
+            for (let i = 1; i < specialTags.length; i++) {
+                if (Math.abs(specialTags[i].offsetTop - window.scrollY) < Math.abs(specialTags[minIndex].offsetTop - window.scrollY)) {
+                    minIndex = i
+                }
+            }
+            //删除offset类触发动画
+            specialTags[minIndex].classList.remove('offset')
+            let id = specialTags[minIndex].id
+            let a = document.querySelector('a[href="#' + id + '"]')
+            let li = a.parentNode
+            let brotherAndMe = li.parentNode.children
+            for (let i = 0; i < brotherAndMe.length; i++) {
+                brotherAndMe[i].classList.remove('highlight')
+            }
+            li.classList.add('highlight')
+        }
+
+        let liTags = document.querySelectorAll('nav.menu > ul > li')
         for (let i = 0; i < liTags.length; i++) {
             liTags[i].onmouseenter = function (e) {
                 e.currentTarget.classList.add('active')
@@ -287,7 +310,7 @@
             TWEEN.update(time);
         }
         requestAnimationFrame(animate);
-        
+
         for (let i = 0; i < aTags.length; i++) {
             aTags[i].onclick = function (x) {
                 x.preventDefault()
@@ -311,16 +334,16 @@
                 //     window.scrollTo(0, currentTop + distance * i)
                 // }, duration)
                 let s = targetTop - currentTop
-                var coords = {y: currentTop };
-                var t = Math.abs((s/100)*300)
-                if(t > 500){
+                var coords = { y: currentTop };
+                var t = Math.abs((s / 100) * 300)
+                if (t > 500) {
                     t = 500
                 }
                 var tween = new TWEEN.Tween(coords)
                     .to({ y: targetTop }, 500)
                     .easing(TWEEN.Easing.Quadratic.InOut)
                     .onUpdate(function () {
-                        window.scrollTo(0,coords.y)
+                        window.scrollTo(0, coords.y)
                     })
                     .start();
             }

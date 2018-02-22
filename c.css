@@ -3,7 +3,24 @@
     display: block;
     clear: both;
 }
-
+[data-x].active{
+    outline: 10px solid red;
+}
+[data-x].offset{
+    transform: translateY(100px);
+}
+[data-x]{
+    transform: translateY(0px);
+    transition: all .75s;
+}
+@keyframes slideUp{
+  0%{
+      transform: translateX(-30%);
+  }
+  100%{
+      transform: translateX(0)
+  }
+}
 body {
     margin: 0;
     background-color: #efefef;
@@ -104,8 +121,8 @@ h1, h2, h3, h4, h5, h6 {
     display: block;
     position: relative;
 }
-
-.topNavBar nav ul li a:hover::after, .topNavBar nav ul li.active>a::after {
+.topNavBar nav ul li.highlight>a::after,
+.topNavBar nav ul li.active>a::after {
     /* border-bottom: 3px solid #e06567; */
     content: '';
     display: block;
@@ -340,6 +357,7 @@ section.skills .progressBar {
     /* border: 1px solid #e6686a; */
     background: #fae1e1;
     border-radius: 2px;
+    overflow: hidden;
 }
 
 section.skills .progressBar .progress {
@@ -347,6 +365,12 @@ section.skills .progressBar .progress {
     width: 60%;
     height: 100%;
     border-radius: 2px;
+    transform: translateX(0);
+    transition: all 1s;
+}
+ 
+section.skills.offset .progress{
+    transform: translateX(-100%);
 }
 
 section.portfolio {
