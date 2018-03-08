@@ -5,75 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="c.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.6/css/swiper.min.css">
     <title>蔡宇森个人简历</title>
     <script src="//at.alicdn.com/t/font_568710_uyr3hkcrmpge3ik9.js"></script>
-    <style type="text/css">
-        .loading {
-            width: 200px;
-            height: 200px;
-            position: relative;
-        }
-
-        .loading::before,
-        .loading::after {
-            content: '';
-            position: absolute;
-            width: 0px;
-            height: 0px;
-            background: black;
-            border-radius: 50%;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            margin: auto;
-            animation: loading 1.5s linear infinite;
-        }
-
-        .loading::after {
-            animation-delay: .75s;
-        }
-
-        @keyframes loading {
-            0% {
-                width: 0;
-                height: 0;
-                opacity: 1;
-            }
-            100% {
-                width: 100px;
-                height: 100px;
-                opacity: 0;
-            }
-        }
-
-        .icon {
-            width: 1em;
-            height: 1em;
-            vertical-align: -0.15em;
-            fill: currentColor;
-            overflow: hidden;
-        }
-
-        .site-welcome {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #888;
-            z-index: 2;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .site-welcome.active {
-            display: flex;
-        }
-    </style>
 </head>
 
 <body>
@@ -224,133 +159,30 @@
     <section data-x id="siteWorks" class="portfolio">
         <h2>作品集</h2>
         <!-- Slider main container -->
-        <div class="swiper-container">
-            <!-- Additional required wrapper -->
-            <div class="swiper-wrapper">
-                <!-- Slides -->
-                <img src="./img/nav-page.jpg" class="swiper-slide">
-                <img src="./img/canvas-page.jpg" class="swiper-slide">
-                <img src="./img/slide-page.jpg" class="swiper-slide">                
-            </div>
-            <!-- If we need pagination -->
-            <div class="swiper-pagination"></div>
+        <div id="mySlides">
+            <div class="swiper-container">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <img src="./img/nav-page.jpg" class="swiper-slide">
+                    <img src="./img/canvas-page.jpg" class="swiper-slide">
+                    <img src="./img/slide-page.jpg" class="swiper-slide">
+                </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
 
-            <!-- If we need navigation buttons -->
+                <!-- If we need navigation buttons -->
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
         </div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.2.0/Tween.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.6/js/swiper.min.js"></script>
-    <script>
-        // siteWelcome.classList.remove('active')
-        //添加offset类
-        let specialTags = document.querySelectorAll('[data-x]')
-        for (let i = 0; i < specialTags.length; i++) {
-            specialTags[i].classList.add('offset')
-        }
-        fuck()
-
-        window.onscroll = function (e) {
-            if (window.scrollY > 0) {
-                topNavBar.classList.add('sticky')
-            } else {
-                topNavBar.classList.remove('sticky')
-            }
-            fuck()
-        }
-
-        function fuck() {
-            let minIndex = 0
-            for (let i = 1; i < specialTags.length; i++) {
-                if (Math.abs(specialTags[i].offsetTop - window.scrollY) < Math.abs(specialTags[minIndex].offsetTop - window.scrollY)) {
-                    minIndex = i
-                }
-            }
-            //删除offset类触发动画
-            specialTags[minIndex].classList.remove('offset')
-            let id = specialTags[minIndex].id
-            let a = document.querySelector('a[href="#' + id + '"]')
-            let li = a.parentNode
-            let brotherAndMe = li.parentNode.children
-            for (let i = 0; i < brotherAndMe.length; i++) {
-                brotherAndMe[i].classList.remove('highlight')
-            }
-            li.classList.add('highlight')
-        }
-
-        let liTags = document.querySelectorAll('nav.menu > ul > li')
-        for (let i = 0; i < liTags.length; i++) {
-            liTags[i].onmouseenter = function (e) {
-                e.currentTarget.classList.add('active')
-            }
-            liTags[i].onmouseleave = function (e) {
-                e.currentTarget.classList.remove('active')
-            }
-        }
-
-        let aTags = document.querySelectorAll('nav.menu > ul > li > a')
-
-        function animate(time) {
-            requestAnimationFrame(animate);
-            TWEEN.update(time);
-        }
-        requestAnimationFrame(animate);
-
-        for (let i = 0; i < aTags.length; i++) {
-            aTags[i].onclick = function (x) {
-                x.preventDefault()
-                let a = x.currentTarget
-                let href = a.getAttribute('href') // #siteAbout #siteSkills #siteWorks
-                let element = document.querySelector(href) // console.log(a.href)//a.href 带http协议
-                let top = element.offsetTop
-
-                // let n = 30 //一共动多少次
-                // let duration = 500 / n //平均每次多长时间 
-                let currentTop = window.scrollY
-                let targetTop = top - 80
-                // let distance = (targetTop - currentTop) / n //一次动多少
-                // let i = 0
-                // let id = setInterval(() => {
-                //     if (i === n) {
-                //         window.clearInterval(id)
-                //         return
-                //     }
-                //     i = i + 1
-                //     window.scrollTo(0, currentTop + distance * i)
-                // }, duration)
-                let s = targetTop - currentTop
-                var coords = { y: currentTop };
-                var t = Math.abs((s / 100) * 300)
-                if (t > 500) {
-                    t = 500
-                }
-                var tween = new TWEEN.Tween(coords)
-                    .to({ y: targetTop }, 500)
-                    .easing(TWEEN.Easing.Quadratic.InOut)
-                    .onUpdate(function () {
-                        window.scrollTo(0, coords.y)
-                    })
-                    .start();
-            }
-        }
-        var mySwiper = new Swiper('.swiper-container', {
-            // Optional parameters
-            direction: 'horizontal',
-            loop: true,
-
-            // If we need pagination
-            pagination: {
-                el: '.swiper-pagination',
-            },
-
-            // Navigation arrows
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        })
-    </script>
+    <script src="./js/init-swiper.js"></script>
+    <script src="./js/auto-slide-up.js"></script>
+    <script src="./js/sticky-topbar.js"></script>
+    <script src="./js/smoothly-navigation.js"></script>
 </body>
 
 </html>
