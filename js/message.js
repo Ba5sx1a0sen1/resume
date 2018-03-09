@@ -39,7 +39,7 @@
             })
         }
     })
-    controller.init(view, model)
+    controller.init.call(controller,view, model)
 }.call()
 
 

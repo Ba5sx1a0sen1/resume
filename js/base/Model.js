@@ -11,6 +11,13 @@ window.Model = function (options) {
             return query.find()
         },
         save: function (object) {
+            if(object.name.trim()===''){
+                alert('请输入你的姓名哦！')
+                return false
+            }else if(object.content.trim()===''){
+                alert('请输入内容哦！')
+                return false
+            }
             var X = AV.Object.extend(resourceName) //查表
             var x = new X()
             return x.save(object)
